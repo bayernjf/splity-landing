@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../consts.ts";
+import "../styles/global.css";
+---
+
+<BaseLayout
+  title="关于"
+  description="Splity 是一款纯前端的智能知识点分割工具，由独立开发者构建，聚焦隐私与学习效率。"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container container-narrow">
+        <span class="section-eyebrow">About</span>
+        <h1>关于 Splity</h1>
+
+        <p class="lead">
+          Splity 是一款把零散知识点自动分割成正反面学习卡片的纯前端工具。
+          它的核心理念是：<strong>复习应该主动检索，而非被动重读</strong>。
+        </p>
+
+        <h2>为什么做这个工具</h2>
+        <p>
+          市面上的闪卡工具大多需要提前建卡、注册账号、同步云端。对于"临时复习一段笔记"这种场景，流程太重。
+          Splity 的目标是：<strong>粘贴即用，翻面即复习，刷新即清空</strong>。没有账号，没有云端，没有数据收集。
+        </p>
+
+        <h2>技术栈</h2>
+        <ul>
+          <li><strong>应用</strong>：React 19 + TypeScript + Vite 8 + 纯 CSS</li>
+          <li><strong>落地页</strong>：Astro 5 + Content Collections + MDX</li>
+          <li><strong>部署</strong>：Cloudflare Pages（Git 集成自动部署）</li>
+          <li><strong>分析</strong>：Cloudflare Web Analytics（隐私友好、无 cookie）</li>
+        </ul>
+
+        <h2>隐私承诺</h2>
+        <p>
+          Splity 应用是纯客户端程序，所有数据仅存在浏览器内存中，<strong>不发送到任何服务器</strong>。
+          落地页同样不使用任何跟踪 cookie。详细说明见
+          <a href="/privacy" class="link">隐私政策</a>。
+        </p>
+
+        <h2>开源与反馈</h2>
+        <p>
+          项目源码与落地页均在
+          <a href={SITE.repoUrl} class="link">GitHub</a> 开放。
+          欢迎通过 Issue 提交功能建议或问题反馈。
+        </p>
+
+        <h2>路线图</h2>
+        <ul>
+          <li>本地持久化（localStorage / IndexedDB）</li>
+          <li>卡片导出（JSON / Anki apkg）</li>
+          <li>自定义分割规则</li>
+          <li>暗色模式切换</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container-narrow { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--text-secondary); margin: 16px 0 40px; line-height: 1.7; }
+  h1 { margin-bottom: 8px; }
+  h2 { font-size: 1.4rem; margin: 40px 0 16px; }
+  p { margin-bottom: 16px; line-height: 1.8; }
+  ul { margin: 0 0 16px 1.5em; }
+  li { margin-bottom: 8px; color: var(--text-secondary); line-height: 1.7; }
+  .link { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+  .link:hover { text-decoration: none; }
+</style>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+const updated = "2026年8月5日";
+---
+
+<BaseLayout
+  title="服务条款"
+  description="Splity 服务条款：免费使用、按现状提供、不承担责任。"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container container-narrow">
+        <span class="section-eyebrow">Terms</span>
+        <h1>服务条款</h1>
+        <p class="updated">最后更新：{updated}</p>
+
+        <div class="doc">
+          <h2>服务描述</h2>
+          <p>Splity（以下简称"本服务"）是一款基于浏览器的知识点分割与卡片复习工具，包含应用（splity.pages.dev）与落地页（splity-landing.pages.dev）两部分。</p>
+
+          <h2>使用许可</h2>
+          <p>本服务免费向公众开放。你可以在个人或商业学习场景中自由使用，但不得：试图逆向工程、篡改服务代码、或用于违法用途。</p>
+
+          <h2>知识产权</h2>
+          <p>本服务的源代码在 GitHub 开放，遵循其仓库声明的开源协议。你粘贴到服务中的学习内容版权归属于你本人。</p>
+
+          <h2>免责声明</h2>
+          <p>本服务按"现状"提供，不提供任何明示或暗示的担保。我们不保证服务持续可用、无缺陷或满足特定用途。使用本服务产生的任何直接或间接损失，我们不承担责任。</p>
+
+          <h2>数据责任</h2>
+          <p>由于本服务不存储任何用户数据，你应对自己的学习内容自行备份。刷新页面导致的数据丢失，我们不承担责任。</p>
+
+          <h2>服务变更与终止</h2>
+          <p>我们保留随时修改、暂停或终止本服务的权利，无需另行通知。重大变更将在落地页公告。</p>
+
+          <h2>适用法律</h2>
+          <p>本条款的解释与争议解决适用中华人民共和国法律。</p>
+
+          <h2>条款变更</h2>
+          <p>本条款如有更新，将在本页面发布并修改"最后更新"日期。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container-narrow { max-width: 720px; }
+  h1 { margin-bottom: 8px; }
+  .updated { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 40px; }
+  .doc h2 { font-size: 1.3rem; margin: 32px 0 12px; }
+  .doc p { margin-bottom: 16px; line-height: 1.8; color: var(--text-secondary); }
+</style>
