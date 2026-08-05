@@ -1,0 +1,143 @@
+---
+import { SITE } from "../consts.ts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedDate?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = "/og-image.png",
+  type = "website",
+  publishedDate,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} — Splity` : SITE.title;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+
+// JSON-LD: WebSite + SoftwareApplication
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Splity",
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: "zh-CN",
+  potentialAction: {
+    "@type": "UseAction",
+    target: `${SITE.url}/blog/how-to-split-knowledge-into-cards`,
+  },
+};
+
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Splity",
+  applicationCategory: "EducationApplication",
+  operatingSystem: "Web",
+  url: SITE.appUrl,
+  description:
+    "把零散知识点自动分割成正反面学习卡片。支持编号列表、问答对、键值对、定义式等多种格式，3D 翻转复习，标记掌握进度。",
+  inLanguage: "zh-CN",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  featureList: [
+    "智能分割 6 种文本格式",
+    "3D 翻转卡片复习",
+    "掌握进度追踪",
+    "列表总览模式",
+    "键盘快捷键",
+    "本地数据处理，隐私优先",
+  ],
+};
+
+const articleSchema =
+  type === "article" && publishedDate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: title,
+        description,
+        image: imageURL.href,
+        datePublished: publishedDate,
+        dateModified: publishedDate,
+        author: { "@type": "Organization", name: SITE.author },
+        publisher: { "@type": "Organization", name: SITE.author },
+        mainEntityOfPage: canonicalURL.href,
+        inLanguage: "zh-CN",
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {/* Open Graph */}
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Splity" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:locale" content="zh_CN" />
+
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={SITE.twitter} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+
+    {/* 主题色：与 splity 应用紫色主色一致 */}
+    <meta name="theme-color" content="#863bff" />
+
+    {/* RSS 订阅 */}
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Splity Blog"
+      href={new URL("rss.xml", Astro.site)}
+    />
+
+    {/* JSON-LD 结构化数据 */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(appSchema)} />
+    {
+      articleSchema && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(articleSchema)}
+        />
+      )
+    }
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
