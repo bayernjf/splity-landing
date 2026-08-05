@@ -1,0 +1,218 @@
+---
+import { SITE } from "../consts.ts";
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="badge hero-eyebrow">知识点 → 学习卡片</span>
+      <h1>
+        把零散知识，<br />
+        <span class="gradient-text">自动分割成卡片</span>
+      </h1>
+      <p class="hero-subtitle">
+        粘贴一段文本，Splity 自动识别 6 种格式，拆分为正反面翻转卡片。
+        无需注册，数据留在浏览器，开箱即用。
+      </p>
+      <div class="hero-actions">
+        <a href={SITE.appUrl} class="btn btn-primary">立即使用</a>
+        <a href="/#demo" class="btn btn-ghost">查看演示</a>
+      </div>
+      <div class="hero-meta">
+        <span class="hero-meta-item">免费</span>
+        <span class="dot">·</span>
+        <span class="hero-meta-item">无需注册</span>
+        <span class="dot">·</span>
+        <span class="hero-meta-item">本地隐私</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="demo-card demo-card-front">
+        <span class="card-label">正面 · 问题</span>
+        <p class="card-text">什么是闭包？</p>
+      </div>
+      <div class="demo-card demo-card-back">
+        <span class="card-label">背面 · 答案</span>
+        <p class="card-text">函数与其词法环境的组合，使内部函数可访问外部变量。</p>
+      </div>
+      <div class="demo-card demo-card-list">
+        <span class="card-label">列表总览</span>
+        <div class="mini-list">
+          <div class="mini-item">① 闭包</div>
+          <div class="mini-item">② 原型链</div>
+          <div class="mini-item">③ 事件循环</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 80px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(134, 59, 255, 0.08) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin: 24px 0 36px;
+    max-width: 520px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .dot {
+    opacity: 0.4;
+  }
+
+  /* ===== 视觉演示区：三张卡片层叠 ===== */
+  .hero-visual {
+    position: relative;
+    height: 420px;
+  }
+
+  .demo-card {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+    width: 280px;
+  }
+
+  .demo-card-front {
+    top: 0;
+    left: 0;
+    transform: rotate(-6deg);
+    z-index: 3;
+  }
+
+  .demo-card-back {
+    top: 60px;
+    right: 0;
+    transform: rotate(4deg);
+    background: linear-gradient(135deg, #f5f0ff, #ede6ff);
+    border-color: rgba(134, 59, 255, 0.2);
+    z-index: 2;
+  }
+
+  .demo-card-list {
+    bottom: 0;
+    left: 40px;
+    transform: rotate(-2deg);
+    z-index: 1;
+    width: 240px;
+  }
+
+  .card-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .card-text {
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .mini-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mini-item {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 6px 10px;
+    background: var(--bg-soft);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .hero-visual {
+      height: 360px;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 48px 0 64px;
+    }
+    .hero-visual {
+      height: 320px;
+      transform: scale(0.85);
+      transform-origin: top center;
+    }
+    .demo-card {
+      width: 240px;
+      padding: 20px;
+    }
+    .demo-card-list {
+      width: 200px;
+    }
+  }
+</style>

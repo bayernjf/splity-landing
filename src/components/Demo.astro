@@ -1,0 +1,132 @@
+---
+const steps = [
+  {
+    num: "01",
+    title: "粘贴知识点",
+    desc: "把笔记、教材摘录或课堂要点粘贴到输入区。支持编号、列表、问答等多种格式。",
+  },
+  {
+    num: "02",
+    title: "一键分割",
+    desc: "Splity 自动识别格式，把文本拆成正反面卡片，无需手动逐条整理。",
+  },
+  {
+    num: "03",
+    title: "翻转复习",
+    desc: "空格翻转卡片查看答案，M 键标记掌握，左右键切换，进度实时可见。",
+  },
+];
+
+const formats = [
+  "编号列表：1. 2. 3. ...",
+  "符号列表：- 或 * 开头",
+  "问答对：Q: ... A: ...",
+  "键值对：key: value",
+  "定义式：术语 — 定义",
+  "空行分段：段落即卡片",
+];
+---
+
+<section class="section section-alt" id="demo">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-eyebrow">How it works</span>
+      <h2 class="section-title">三步完成卡片化复习</h2>
+      <p class="section-subtitle">从文本到卡片，只需粘贴一次。</p>
+    </div>
+
+    <div class="steps-grid">
+      {
+        steps.map((s) => (
+          <div class="step">
+            <span class="step-num">{s.num}</span>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="format-demo">
+      <div class="format-demo-label">
+        <span class="badge">支持的输入格式</span>
+      </div>
+      <div class="format-list">
+        {
+          formats.map((f) => (
+            <code class="format-item">{f}</code>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-alt {
+    background: var(--bg-soft);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  .step {
+    position: relative;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .step-num {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .step h3 {
+    margin-bottom: 10px;
+  }
+
+  .format-demo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .format-demo-label {
+    margin-bottom: 20px;
+  }
+
+  .format-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .format-item {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    background: var(--bg-soft);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+  }
+
+  @media (max-width: 768px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>

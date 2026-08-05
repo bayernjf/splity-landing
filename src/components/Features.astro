@@ -1,0 +1,97 @@
+---
+const features = [
+  {
+    icon: "✂️",
+    title: "智能分割",
+    desc: "自动识别编号列表、符号列表、问答对、键值对、定义式、空行分段，6 种格式一次拆解。",
+  },
+  {
+    icon: "🔄",
+    title: "3D 翻转卡片",
+    desc: "cubic-bezier 流畅动画，点击或空格翻转。左右键切换，M 键标记掌握，键盘党的福音。",
+  },
+  {
+    icon: "📊",
+    title: "进度追踪",
+    desc: "实时进度条显示掌握比例，标记已掌握卡片，复习节奏一目了然。",
+  },
+  {
+    icon: "📋",
+    title: "列表总览",
+    desc: "一键切换列表模式，浏览全部卡片，快速定位需要重点复习的内容。",
+  },
+  {
+    icon: "🔒",
+    title: "本地隐私",
+    desc: "纯前端运行，数据仅存于浏览器内存，不发送到任何服务器，刷新即清空。",
+  },
+  {
+    icon: "⚡",
+    title: "零配置开箱",
+    desc: "无需注册、无需登录、无需安装。打开网页即可使用，移动端原生适配。",
+  },
+];
+---
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-eyebrow">Features</span>
+      <h2 class="section-title">为高效复习而生</h2>
+      <p class="section-subtitle">
+        从知识点到掌握，Splity 覆盖完整学习闭环：分割 → 复习 → 追踪 → 巩固。
+      </p>
+    </div>
+
+    <div class="features-grid">
+      {
+        features.map((f) => (
+          <article class="card feature-card">
+            <div class="feature-icon">{f.icon}</div>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    text-align: left;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .feature-card h3 {
+    margin-bottom: 8px;
+  }
+
+  .feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 960px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

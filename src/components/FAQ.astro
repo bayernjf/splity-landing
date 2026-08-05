@@ -1,0 +1,127 @@
+---
+const faqs = [
+  {
+    q: "Splity 是免费的吗？",
+    a: "完全免费。Splity 是纯前端工具，无需注册、无需付费，打开网页即可使用全部功能。",
+  },
+  {
+    q: "我的数据会被上传到服务器吗？",
+    a: "不会。所有数据仅存在浏览器内存中，不发送到任何服务器。刷新页面即清空，最大程度保护隐私。",
+  },
+  {
+    q: "支持哪些文本格式？",
+    a: "支持 6 种：编号列表（1. 2. 3.）、符号列表（- 或 *）、问答对（Q:/A:）、键值对（key: value）、定义式（术语 — 定义）、空行分段。",
+  },
+  {
+    q: "如何在手机上使用？",
+    a: "Splity 已做移动端原生适配，手机浏览器打开即可使用，支持触屏翻转与键盘快捷键。",
+  },
+  {
+    q: "能保存复习进度吗？",
+    a: "当前版本数据仅存于会话内存，刷新即清空。本地持久化与导出功能在路线图中，敬请期待。",
+  },
+  {
+    q: "和 Anki 有什么区别？",
+    a: "Splity 聚焦即时卡片化，无需提前建卡：粘贴文本即拆分复习，适合临时复习与碎片化学习。Anki 适合长期重复记忆，二者互补。",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<section class="section" id="faq">
+  <div class="container container-narrow">
+    <div class="text-center">
+      <span class="section-eyebrow">FAQ</span>
+      <h2 class="section-title">常见问题</h2>
+    </div>
+
+    <div class="faq-list">
+      {
+        faqs.map((f) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              <span>{f.q}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-a">
+              <p>{f.a}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </div>
+</section>
+
+<style>
+  .container-narrow {
+    max-width: 760px;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: var(--primary);
+  }
+
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+    list-style: none;
+  }
+
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: var(--primary);
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 24px 20px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

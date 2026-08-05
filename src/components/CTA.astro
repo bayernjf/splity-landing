@@ -1,0 +1,73 @@
+---
+import { SITE } from "../consts.ts";
+---
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <h2>现在就把知识变成卡片</h2>
+      <p>无需注册，打开即用。30 秒内完成第一次复习。</p>
+      <a href={SITE.appUrl} class="btn btn-primary btn-lg">开始使用 Splity</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: 48px 0 96px;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: var(--radius-lg);
+    padding: 64px 48px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  .cta-box h2 {
+    color: #fff;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .cta-box p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 32px;
+    font-size: 1.1rem;
+    position: relative;
+  }
+
+  .btn-lg {
+    padding: 16px 36px;
+    font-size: 1.05rem;
+    background: #fff;
+    color: var(--primary);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-lg:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 560px) {
+    .cta-box {
+      padding: 48px 24px;
+    }
+  }
+</style>
