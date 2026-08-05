@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/global.css";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .map((post) => ({
+    slug: post.id,
+    ...post.data,
+  }));
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<BaseLayout
+  title="博客"
+  description="Splity 博客：学习方法、卡片复习技巧、认知科学与产品更新。"
+>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container container-narrow">
+        <span class="section-eyebrow">Blog</span>
+        <h1 class="page-title">学习方法与产品思考</h1>
+        <p class="page-subtitle">
+          关于卡片复习、间隔重复、主动检索的认知科学实践。
+        </p>
+
+        <div class="post-list">
+          {
+            posts.map((post) => (
+              <article class="post-item">
+                <a href={`/blog/${post.slug}`} class="post-link">
+                  <h2 class="post-title">{post.title}</h2>
+                  <p class="post-desc">{post.description}</p>
+                  <div class="post-meta">
+                    <time datetime={post.pubDate.toISOString()}>
+                      {formatDate(post.pubDate)}
+                    </time>
+                    <span class="dot">·</span>
+                    <div class="post-tags">
+                      {post.tags.map((t: string) => (
+                        <span class="post-tag">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .container-narrow { max-width: 760px; }
+  .page-title { margin: 8px 0 12px; }
+  .page-subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 56px; }
+  .post-list { display: flex; flex-direction: column; gap: 8px; }
+  .post-item { border-bottom: 1px solid var(--border); }
+  .post-link { display: block; padding: 32px 0; transition: transform 0.2s; }
+  .post-link:hover { transform: translateX(4px); }
+  .post-link:hover .post-title { color: var(--primary); }
+  .post-title { font-size: 1.4rem; margin-bottom: 8px; transition: color 0.2s; }
+  .post-desc { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.6; }
+  .post-meta { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); }
+  .dot { opacity: 0.4; }
+  .post-tags { display: flex; gap: 8px; }
+  .post-tag { color: var(--primary); }
+</style>
