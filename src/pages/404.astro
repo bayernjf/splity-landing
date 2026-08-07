@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="404 — 页面不存在" description="你访问的 Splity 页面不存在或已被移动。" noindex>
+  <Header />
+  <main>
+    <section class="section">
+      <div class="container container-narrow" style="text-align: center; padding-top: 4rem; padding-bottom: 4rem;">
+        <span class="section-eyebrow">404</span>
+        <h1>页面不存在</h1>
+        <p class="lead">你访问的页面不存在，或者已经被移动。</p>
+        <p style="margin-top: 2rem;">
+          <a href="/" style="color: var(--accent); font-weight: 600; text-decoration: none;">← 回到首页</a>
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
