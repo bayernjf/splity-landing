@@ -1,15 +1,17 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE } from "../consts.ts";
-import { useTranslations, type Lang } from "../i18n/utils.ts";
-import "../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE } from "../../consts.ts";
+import { useTranslations, type Lang } from "../../i18n/utils.ts";
+import "../../styles/global.css";
 
-const lang = "en" as const satisfies Lang;
+const lang = "zh" as const satisfies Lang;
 const t = useTranslations(lang);
 
-// Split stack items on first colon (ASCII or full-width) to bold the label
+// 中文关于页描述与原始版本保持一致
+const description = "Splity 是一款纯前端的智能知识点分割工具，由独立开发者构建，聚焦隐私与学习效率。";
+
 const splitStackItem = (item: string) => {
   const match = item.match(/^([^:：]+)([:：])(.*)$/);
   if (!match) return { label: "", sep: "", value: item };
@@ -20,7 +22,7 @@ const splitStackItem = (item: string) => {
 <BaseLayout
   lang={lang}
   title={t.aboutTitle}
-  description="Splity is a pure front-end smart knowledge splitter built by an independent developer, focused on privacy and learning efficiency."
+  description={description}
 >
   <Header lang={lang} />
   <main>
@@ -53,13 +55,13 @@ const splitStackItem = (item: string) => {
         <h2>{t.aboutPrivacyTitle}</h2>
         <p>
           {t.aboutPrivacyP1}<strong>{t.aboutPrivacyP1Highlight}</strong>{" "}
-          <a href="/privacy" class="link">{t.aboutPrivacyLink}</a>.
+          <a href="/zh/privacy" class="link">{t.aboutPrivacyLink}</a>。
         </p>
 
         <h2>{t.aboutOpenTitle}</h2>
         <p>
           {t.aboutOpenP1}{" "}
-          <a href={SITE.repoUrl} class="link">{t.aboutOpenLink}</a>.
+          <a href={SITE.repoUrl} class="link">{t.aboutOpenLink}</a> 开放。
         </p>
 
         <h2>{t.aboutRoadmapTitle}</h2>

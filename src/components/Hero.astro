@@ -1,47 +1,54 @@
 ---
 import { SITE } from "../consts.ts";
+import { useTranslations, getLocalizedPath, type Lang } from "../i18n/utils.ts";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+const demoHref = getLocalizedPath("/#demo", lang);
 ---
 
 <section class="hero">
   <div class="container hero-inner">
     <div class="hero-content">
-      <span class="badge hero-eyebrow">知识点 → 学习卡片</span>
+      <span class="badge hero-eyebrow">{t.heroBadge}</span>
       <h1>
-        把零散知识，<br />
-        <span class="gradient-text">自动分割成卡片</span>
+        {t.heroTitleLine1}<br />
+        <span class="gradient-text">{t.heroTitleHighlight}</span>
       </h1>
       <p class="hero-subtitle">
-        粘贴一段文本，Splity 自动识别 6 种格式，拆分为正反面翻转卡片。
-        无需注册，数据留在浏览器，开箱即用。
+        {t.heroSubtitle}
       </p>
       <div class="hero-actions">
-        <a href={SITE.appUrl} class="btn btn-primary">立即使用</a>
-        <a href="/#demo" class="btn btn-ghost">查看演示</a>
+        <a href={SITE.appUrl} class="btn btn-primary">{t.heroPrimaryCta}</a>
+        <a href={demoHref} class="btn btn-ghost">{t.heroSecondaryCta}</a>
       </div>
       <div class="hero-meta">
-        <span class="hero-meta-item">免费</span>
+        <span class="hero-meta-item">{t.heroMetaFree}</span>
         <span class="dot">·</span>
-        <span class="hero-meta-item">无需注册</span>
+        <span class="hero-meta-item">{t.heroMetaNoSignup}</span>
         <span class="dot">·</span>
-        <span class="hero-meta-item">本地隐私</span>
+        <span class="hero-meta-item">{t.heroMetaLocal}</span>
       </div>
     </div>
 
     <div class="hero-visual" aria-hidden="true">
       <div class="demo-card demo-card-front">
-        <span class="card-label">正面 · 问题</span>
-        <p class="card-text">什么是闭包？</p>
+        <span class="card-label">{t.heroCardFrontLabel}</span>
+        <p class="card-text">{t.heroCardFrontText}</p>
       </div>
       <div class="demo-card demo-card-back">
-        <span class="card-label">背面 · 答案</span>
-        <p class="card-text">函数与其词法环境的组合，使内部函数可访问外部变量。</p>
+        <span class="card-label">{t.heroCardBackLabel}</span>
+        <p class="card-text">{t.heroCardBackText}</p>
       </div>
       <div class="demo-card demo-card-list">
-        <span class="card-label">列表总览</span>
+        <span class="card-label">{t.heroCardListLabel}</span>
         <div class="mini-list">
-          <div class="mini-item">① 闭包</div>
-          <div class="mini-item">② 原型链</div>
-          <div class="mini-item">③ 事件循环</div>
+          <div class="mini-item">{t.heroCardListItem1}</div>
+          <div class="mini-item">{t.heroCardListItem2}</div>
+          <div class="mini-item">{t.heroCardListItem3}</div>
         </div>
       </div>
     </div>

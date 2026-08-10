@@ -1,45 +1,21 @@
 ---
-const features = [
-  {
-    icon: "✂️",
-    title: "智能分割",
-    desc: "自动识别编号列表、符号列表、问答对、键值对、定义式、空行分段，6 种格式一次拆解。",
-  },
-  {
-    icon: "🔄",
-    title: "3D 翻转卡片",
-    desc: "cubic-bezier 流畅动画，点击或空格翻转。左右键切换，M 键标记掌握，键盘党的福音。",
-  },
-  {
-    icon: "📊",
-    title: "进度追踪",
-    desc: "实时进度条显示掌握比例，标记已掌握卡片，复习节奏一目了然。",
-  },
-  {
-    icon: "📋",
-    title: "列表总览",
-    desc: "一键切换列表模式，浏览全部卡片，快速定位需要重点复习的内容。",
-  },
-  {
-    icon: "🔒",
-    title: "本地隐私",
-    desc: "纯前端运行，数据仅存于浏览器内存，不发送到任何服务器，刷新即清空。",
-  },
-  {
-    icon: "⚡",
-    title: "零配置开箱",
-    desc: "无需注册、无需登录、无需安装。打开网页即可使用，移动端原生适配。",
-  },
-];
+import { useTranslations, type Lang } from "../i18n/utils.ts";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+const features = t.features;
 ---
 
 <section class="section" id="features">
   <div class="container">
     <div class="text-center">
-      <span class="section-eyebrow">Features</span>
-      <h2 class="section-title">为高效复习而生</h2>
+      <span class="section-eyebrow">{t.featuresEyebrow}</span>
+      <h2 class="section-title">{t.featuresTitle}</h2>
       <p class="section-subtitle">
-        从知识点到掌握，Splity 覆盖完整学习闭环：分割 → 复习 → 追踪 → 巩固。
+        {t.featuresSubtitle}
       </p>
     </div>
 

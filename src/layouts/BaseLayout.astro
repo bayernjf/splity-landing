@@ -1,7 +1,17 @@
 ---
-import { SITE } from "../consts.ts";
+import { SITE, SITE_EN, SITE_ZH } from "../consts.ts";
+import {
+  getLangFromUrl,
+  useTranslations,
+  getHtmlLang,
+  getOgLocale,
+  getAltLangPath,
+  getHrefLangUrl,
+  type Lang,
+} from "../i18n/utils.ts";
 
 interface Props {
+  lang?: Lang;
   title?: string;
   description?: string;
   image?: string;
@@ -11,17 +21,32 @@ interface Props {
 }
 
 const {
+  lang,
   title,
-  description = SITE.description,
+  description,
   image = "/og-image.png",
   type = "website",
   publishedDate,
   noindex = false,
 } = Astro.props;
 
-const pageTitle = title ? `${title} | Splity` : SITE.title;
+// 如果未显式传入 lang，则从 URL 推断
+const currentLang: Lang = lang ?? getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+const siteMeta = currentLang === "zh" ? SITE_ZH : SITE_EN;
+
+const pageTitle = title ? `${title} | Splity` : siteMeta.title;
+const pageDescription = description ?? siteMeta.description;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
+const htmlLang = getHtmlLang(currentLang);
+const ogLocale = getOgLocale(currentLang);
+
+// 交替语言 hreflang
+const altLang = currentLang === "zh" ? "en" : "zh";
+const altHref = getAltLangPath(Astro.url.pathname, altLang);
+const altHrefFull = getHrefLangUrl(Astro.url.pathname, altLang, SITE.url);
+const curHrefFull = getHrefLangUrl(Astro.url.pathname, currentLang, SITE.url);
 
 // JSON-LD: WebSite + SoftwareApplication
 const websiteSchema = {
@@ -29,8 +54,8 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "Splity",
   url: SITE.url,
-  description: SITE.description,
-  inLanguage: "zh-CN",
+  description: siteMeta.description,
+  inLanguage: siteMeta.locale,
   potentialAction: {
     "@type": "UseAction",
     target: `${SITE.url}/blog/how-to-split-knowledge-into-cards`,
@@ -44,22 +69,14 @@ const appSchema = {
   applicationCategory: "EducationApplication",
   operatingSystem: "Web",
   url: SITE.appUrl,
-  description:
-    "把零散知识点自动分割成正反面学习卡片。支持编号列表、问答对、键值对、定义式等多种格式，3D 翻转复习，标记掌握进度。",
-  inLanguage: "zh-CN",
+  description: t.appSchemaDescription,
+  inLanguage: siteMeta.locale,
   offers: {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
   },
-  featureList: [
-    "智能分割 6 种文本格式",
-    "3D 翻转卡片复习",
-    "掌握进度追踪",
-    "列表总览模式",
-    "键盘快捷键",
-    "本地数据处理，隐私优先",
-  ],
+  featureList: t.appSchemaFeatureList,
 };
 
 const articleSchema =
@@ -68,20 +85,23 @@ const articleSchema =
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         headline: title,
-        description,
+        description: pageDescription,
         image: imageURL.href,
         datePublished: publishedDate,
         dateModified: publishedDate,
         author: { "@type": "Organization", name: SITE.author },
         publisher: { "@type": "Organization", name: SITE.author },
         mainEntityOfPage: canonicalURL.href,
-        inLanguage: "zh-CN",
+        inLanguage: siteMeta.locale,
       }
     : null;
+
+// RSS 链接按语言区分
+const rssPath = currentLang === "zh" ? "/zh/rss.xml" : "/rss.xml";
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -89,7 +109,7 @@ const articleSchema =
     <meta name="generator" content={Astro.generator} />
 
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
@@ -97,27 +117,34 @@ const articleSchema =
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Splity" />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={imageURL} />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={ogLocale} />
+    {altLang === "zh" && <meta property="og:locale:alternate" content="zh_CN" />}
+    {altLang === "en" && <meta property="og:locale:alternate" content="en_US" />}
 
     {/* Twitter Card */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content={SITE.twitter} />
     <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={imageURL} />
 
     {/* 主题色：与 splity 应用紫色主色一致 */}
     <meta name="theme-color" content="#863bff" />
+
+    {/* hreflang 交替语言 */}
+    <link rel="alternate" hreflang={htmlLang} href={curHrefFull} />
+    <link rel="alternate" hreflang={altLang === "zh" ? "zh-CN" : "en"} href={altHrefFull} />
+    <link rel="alternate" hreflang="x-default" href={new URL("/", Astro.site).href} />
 
     {/* RSS 订阅 */}
     <link
       rel="alternate"
       type="application/rss+xml"
       title="Splity Blog"
-      href={new URL("rss.xml", Astro.site)}
+      href={new URL(rssPath, Astro.site)}
     />
 
     {/* JSON-LD 结构化数据 */}

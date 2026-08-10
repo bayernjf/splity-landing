@@ -10,8 +10,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: {
-        defaultLocale: "zh-CN",
-        locales: { "zh-CN": "zh-CN" },
+        defaultLocale: "en",
+        locales: {
+          en: "en-US",
+          zh: "zh-CN",
+        },
       },
     }),
     mdx(),

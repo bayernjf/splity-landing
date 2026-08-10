@@ -1,34 +1,17 @@
 ---
-const faqs = [
-  {
-    q: "Splity 是免费的吗？",
-    a: "完全免费。Splity 是纯前端工具，无需注册、无需付费，打开网页即可使用全部功能。",
-  },
-  {
-    q: "我的数据会被上传到服务器吗？",
-    a: "不会。所有数据仅存在浏览器内存中，不发送到任何服务器。刷新页面即清空，最大程度保护隐私。",
-  },
-  {
-    q: "支持哪些文本格式？",
-    a: "支持 6 种：编号列表（1. 2. 3.）、符号列表（- 或 *）、问答对（Q:/A:）、键值对（key: value）、定义式（术语 — 定义）、空行分段。",
-  },
-  {
-    q: "如何在手机上使用？",
-    a: "Splity 已做移动端原生适配，手机浏览器打开即可使用，支持触屏翻转与键盘快捷键。",
-  },
-  {
-    q: "能保存复习进度吗？",
-    a: "当前版本数据仅存于会话内存，刷新即清空。本地持久化与导出功能在路线图中，敬请期待。",
-  },
-  {
-    q: "和 Anki 有什么区别？",
-    a: "Splity 聚焦即时卡片化，无需提前建卡：粘贴文本即拆分复习，适合临时复习与碎片化学习。Anki 适合长期重复记忆，二者互补。",
-  },
-];
+import { useTranslations, type Lang } from "../i18n/utils.ts";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+const faqs = t.faqItems;
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  inLanguage: lang === "zh" ? "zh-CN" : "en-US",
   mainEntity: faqs.map((f) => ({
     "@type": "Question",
     name: f.q,
@@ -40,8 +23,8 @@ const faqSchema = {
 <section class="section" id="faq">
   <div class="container container-narrow">
     <div class="text-center">
-      <span class="section-eyebrow">FAQ</span>
-      <h2 class="section-title">常见问题</h2>
+      <span class="section-eyebrow">{t.faqEyebrow}</span>
+      <h2 class="section-title">{t.faqTitle}</h2>
     </div>
 
     <div class="faq-list">
