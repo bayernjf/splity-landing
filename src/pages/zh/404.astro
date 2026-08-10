@@ -1,18 +1,18 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { useTranslations, getLocalizedPath, type Lang } from "../i18n/utils.ts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations, getLocalizedPath, type Lang } from "../../i18n/utils.ts";
 
-const lang = "en" as const satisfies Lang;
+const lang = "zh" as const satisfies Lang;
 const t = useTranslations(lang);
 const homeHref = getLocalizedPath("/", lang);
 ---
 
 <BaseLayout
   lang={lang}
-  title="404: Page not found"
-  description="The Splity page you're looking for doesn't exist or has been moved."
+  title="404: 页面不存在"
+  description="你访问的 Splity 页面不存在或已被移动。"
   noindex
 >
   <Header lang={lang} />

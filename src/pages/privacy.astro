@@ -2,66 +2,38 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { useTranslations, type Lang } from "../i18n/utils.ts";
 import "../styles/global.css";
-const updated = "2026年8月5日";
+
+const lang = "en" as const satisfies Lang;
+const t = useTranslations(lang);
 ---
 
 <BaseLayout
-  title="隐私政策"
-  description="Splity 隐私政策：纯前端运行，数据本地处理，零收集零追踪。"
+  lang={lang}
+  title={t.privacyTitle}
+  description="Splity privacy policy: pure front-end, local data processing, zero collection, zero tracking."
 >
-  <Header />
+  <Header lang={lang} />
   <main>
     <section class="section">
       <div class="container container-narrow">
-        <span class="section-eyebrow">Privacy</span>
-        <h1>隐私政策</h1>
-        <p class="updated">最后更新：{updated}</p>
+        <span class="section-eyebrow">{t.privacyEyebrow}</span>
+        <h1>{t.privacyTitle}</h1>
+        <p class="updated">{t.privacyUpdated}</p>
 
         <div class="doc">
-          <h2>核心原则</h2>
-          <p>
-            Splity 是一款纯前端工具。我们遵循"数据最小化"原则：
-            <strong>不收集、不存储、不传输</strong>用户的任何学习内容。
-          </p>
-
-          <h2>数据处理</h2>
-          <p>
-            你在 Splity 应用中粘贴的所有文本、生成的卡片、掌握标记等数据，
-            <strong>仅存在浏览器内存中</strong>。这些数据不会发送到我们的服务器或任何第三方服务。
-            关闭或刷新页面后，数据将被清除。
-          </p>
-
-          <h2>Cookies 与本地存储</h2>
-          <p>
-            Splity 应用本身不使用 cookie，也不使用 localStorage 或 IndexedDB 进行持久化。
-            当前版本刷新即清空，未来若增加本地持久化功能，将默认开启并在隐私政策中明确告知。
-          </p>
-
-          <h2>落地页分析</h2>
-          <p>
-            本落地页（splity-landing.pages.dev）使用
-            <a href="https://www.cloudflare.com/web-analytics/" class="link" rel="noopener" target="_blank">Cloudflare Web Analytics</a>
-            收集聚合访问统计（页面浏览量、访问来源、国家/地区）。
-            该服务<strong>不使用 cookie，不跨站跟踪，不识别个人身份</strong>。
-          </p>
-
-          <h2>第三方服务</h2>
-          <p>Splity 不集成任何第三方分析、广告或跟踪服务。落地页托管于 Cloudflare Pages，仅依赖 Cloudflare 的基础设施进行内容分发。</p>
-
-          <h2>儿童隐私</h2>
-          <p>Splity 面向通用学习场景，不针对 13 岁以下儿童设计，也不主动收集任何个人信息。</p>
-
-          <h2>政策变更</h2>
-          <p>本政策如有更新，将在本页面发布并修改"最后更新"日期。重大变更会通过落地页公告告知用户。</p>
-
-          <h2>联系我们</h2>
-          <p>如有隐私相关问题，请通过 GitHub Issues 联系。</p>
+          {t.privacySections.map((s) => (
+            <>
+              <h2>{s.h}</h2>
+              <p>{s.p}</p>
+            </>
+          ))}
         </div>
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </BaseLayout>
 
 <style>

@@ -1,38 +1,21 @@
 ---
-const steps = [
-  {
-    num: "01",
-    title: "粘贴知识点",
-    desc: "把笔记、教材摘录或课堂要点粘贴到输入区。支持编号、列表、问答等多种格式。",
-  },
-  {
-    num: "02",
-    title: "一键分割",
-    desc: "Splity 自动识别格式，把文本拆成正反面卡片，无需手动逐条整理。",
-  },
-  {
-    num: "03",
-    title: "翻转复习",
-    desc: "空格翻转卡片查看答案，M 键标记掌握，左右键切换，进度实时可见。",
-  },
-];
+import { useTranslations, type Lang } from "../i18n/utils.ts";
 
-const formats = [
-  "编号列表：1. 2. 3. ...",
-  "符号列表：- 或 * 开头",
-  "问答对：Q: ... A: ...",
-  "键值对：key: value",
-  "定义式：术语 — 定义",
-  "空行分段：段落即卡片",
-];
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
+const steps = t.demoSteps;
+const formats = t.demoFormats;
 ---
 
 <section class="section section-alt" id="demo">
   <div class="container">
     <div class="text-center">
-      <span class="section-eyebrow">How it works</span>
-      <h2 class="section-title">三步完成卡片化复习</h2>
-      <p class="section-subtitle">从文本到卡片，只需粘贴一次。</p>
+      <span class="section-eyebrow">{t.demoEyebrow}</span>
+      <h2 class="section-title">{t.demoTitle}</h2>
+      <p class="section-subtitle">{t.demoSubtitle}</p>
     </div>
 
     <div class="steps-grid">
@@ -49,7 +32,7 @@ const formats = [
 
     <div class="format-demo">
       <div class="format-demo-label">
-        <span class="badge">支持的输入格式</span>
+        <span class="badge">{t.demoFormatsLabel}</span>
       </div>
       <div class="format-list">
         {

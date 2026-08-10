@@ -1,13 +1,20 @@
 ---
 import { SITE } from "../consts.ts";
+import { useTranslations, type Lang } from "../i18n/utils.ts";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = "en" } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="section cta-section">
   <div class="container">
     <div class="cta-box">
-      <h2>现在就把知识变成卡片</h2>
-      <p>无需注册，打开即用。30 秒内完成第一次复习。</p>
-      <a href={SITE.appUrl} class="btn btn-primary btn-lg">开始使用 Splity</a>
+      <h2>{t.ctaTitle}</h2>
+      <p>{t.ctaSubtitle}</p>
+      <a href={SITE.appUrl} class="btn btn-primary btn-lg">{t.ctaButton}</a>
     </div>
   </div>
 </section>

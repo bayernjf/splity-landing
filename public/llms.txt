@@ -1,34 +1,36 @@
 # Splity
 
-> Splity 是一款把零散知识点自动分割成正反面学习卡片的纯前端工具。粘贴一段文本，自动识别编号列表、符号列表、问答对（Q/A）、键值对、定义式、空行分段等多种格式，拆分为可翻转复习的闪卡，支持标记掌握进度与列表总览。无需注册、无需后端，数据全部留在浏览器本地。
+> Splity is a pure front-end tool that automatically splits scattered knowledge points into front/back study flashcards. Paste a block of text and it auto-detects numbered lists, bullet lists, Q&A pairs (Q/A), key-value pairs, definitions, and blank-line segments, then splits them into flippable review cards with mastery progress tracking and a list overview mode. No signup, no back-end, all data stays in the browser locally.
 
-Splity 由 React 19 + TypeScript + Vite 构建，纯客户端运行，不收集任何用户数据。落地页使用 Astro 静态生成，部署在 Cloudflare Pages。
+Splity is built with React 19 + TypeScript + Vite and runs entirely on the client side, collecting no user data. The landing page is statically generated with Astro and deployed on Cloudflare Pages.
 
-## 核心功能
+## Core Features
 
-- 智能分割：自动识别 6 种文本格式（编号列表、符号列表、问答对、键值对、定义式、空行分段）
-- 3D 翻转卡片：cubic-bezier 动画，支持空格翻转、左右键切换、M 键标记掌握
-- 进度追踪：实时进度条，标记已掌握卡片
-- 列表总览：一键切换列表模式浏览全部卡片
-- 隐私优先：所有数据仅在浏览器内存中处理，不发送到任何服务器
+- Smart Split: auto-detects 6 text formats (numbered list, bullet list, Q&A pairs, key-value pairs, definitions, blank-line segments)
+- 3D Flip Cards: cubic-bezier animations, supports spacebar flip, arrow-key navigation, M-key mastery marking
+- Progress Tracking: real-time progress bar, marks mastered cards
+- List Overview: one-tap switch to list mode to browse all cards
+- Privacy First: all data is processed only in browser memory, never sent to any server
 
-## 适用场景
+## Use Cases
 
-- 考试复习（知识点拆分为问答卡）
-- 语言学习（单词-释义配对）
-- 概念记忆（术语-定义对应）
-- 读书笔记（章节要点提炼）
+- Exam review (split knowledge points into Q&A cards)
+- Language learning (word-definition pairing)
+- Concept memorization (term-definition mapping)
+- Reading notes (chapter key-point extraction)
 
-## 技术栈
+## Tech Stack
 
-- 前端：React 19、TypeScript、Vite 8、纯 CSS
-- 落地页：Astro 5、Content Collections、Cloudflare Pages
-- 部署：Cloudflare Pages（Git 集成自动部署）
+- Front-end: React 19, TypeScript, Vite 8, pure CSS
+- Landing page: Astro 5, Content Collections, Cloudflare Pages
+- Hosting: Cloudflare Pages (Git-integrated auto-deploy)
 
-## 链接
+## Links
 
-- [Splity 应用](https://splity.pages.dev)
-- [GitHub 仓库](https://github.com/bayernjf/splity-landing)
-- [博客](https://splity-landing.pages.dev/blog)
-- [关于](https://splity-landing.pages.dev/about)
-- [隐私政策](https://splity-landing.pages.dev/privacy)
+- [Splity App](https://splity.pages.dev)
+- [GitHub Repository](https://github.com/bayernjf/splity-landing)
+- [Blog (English)](https://splity-landing.pages.dev/blog)
+- [Blog (Chinese)](https://splity-landing.pages.dev/zh/blog)
+- [About](https://splity-landing.pages.dev/about)
+- [Privacy Policy](https://splity-landing.pages.dev/privacy)
+- [Terms of Service](https://splity-landing.pages.dev/terms)

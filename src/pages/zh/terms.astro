@@ -1,18 +1,18 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { useTranslations, type Lang } from "../i18n/utils.ts";
-import "../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations, type Lang } from "../../i18n/utils.ts";
+import "../../styles/global.css";
 
-const lang = "en" as const satisfies Lang;
+const lang = "zh" as const satisfies Lang;
 const t = useTranslations(lang);
 ---
 
 <BaseLayout
   lang={lang}
   title={t.termsTitle}
-  description="Splity terms of service: free to use, provided as-is, no liability."
+  description="Splity 服务条款：免费使用、按现状提供、不承担责任。"
 >
   <Header lang={lang} />
   <main>

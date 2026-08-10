@@ -1,29 +1,29 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { useTranslations, type Lang } from "../i18n/utils.ts";
-import "../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { useTranslations, type Lang } from "../../i18n/utils.ts";
+import "../../styles/global.css";
 
-const lang = "en" as const satisfies Lang;
+const lang = "zh" as const satisfies Lang;
 const t = useTranslations(lang);
 ---
 
 <BaseLayout
   lang={lang}
-  title={t.termsTitle}
-  description="Splity terms of service: free to use, provided as-is, no liability."
+  title={t.privacyTitle}
+  description="Splity 隐私政策：纯前端运行，数据本地处理，零收集零追踪。"
 >
   <Header lang={lang} />
   <main>
     <section class="section">
       <div class="container container-narrow">
-        <span class="section-eyebrow">{t.termsEyebrow}</span>
-        <h1>{t.termsTitle}</h1>
-        <p class="updated">{t.termsUpdated}</p>
+        <span class="section-eyebrow">{t.privacyEyebrow}</span>
+        <h1>{t.privacyTitle}</h1>
+        <p class="updated">{t.privacyUpdated}</p>
 
         <div class="doc">
-          {t.termsSections.map((s) => (
+          {t.privacySections.map((s) => (
             <>
               <h2>{s.h}</h2>
               <p>{s.p}</p>
@@ -42,4 +42,5 @@ const t = useTranslations(lang);
   .updated { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 40px; }
   .doc h2 { font-size: 1.3rem; margin: 32px 0 12px; }
   .doc p { margin-bottom: 16px; line-height: 1.8; color: var(--text-secondary); }
+  .link { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
 </style>
