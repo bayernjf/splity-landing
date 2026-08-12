@@ -42,6 +42,9 @@ export interface Translation {
   // Header
   headerBrandAria: string;
   headerNavAria: string;
+  headerLangSwitchAria: string;
+  headerMenuToggleAria: string;
+  headerMobileNavAria: string;
   navFeatures: string;
   navDemo: string;
   navFaq: string;
@@ -155,6 +158,9 @@ export interface Translation {
 const en: Translation = {
   headerBrandAria: "Splity home",
   headerNavAria: "Main navigation",
+  headerLangSwitchAria: "Switch language",
+  headerMenuToggleAria: "Menu",
+  headerMobileNavAria: "Mobile navigation",
   navFeatures: "Features",
   navDemo: "Demo",
   navFaq: "FAQ",
@@ -456,6 +462,9 @@ const en: Translation = {
 const zh: Translation = {
   headerBrandAria: "Splity 首页",
   headerNavAria: "主导航",
+  headerLangSwitchAria: "切换语言",
+  headerMenuToggleAria: "菜单",
+  headerMobileNavAria: "移动端导航",
   navFeatures: "功能",
   navDemo: "演示",
   navFaq: "FAQ",
