@@ -1,4 +1,5 @@
 ---
+import BayjfLink from '@bay/landing-ui/components/BayjfLink.astro';
 import { SITE } from "../consts.ts";
 import { useTranslations, getLocalizedPath, type Lang } from "../i18n/utils.ts";
 
@@ -53,13 +54,17 @@ const homeHref = getLocalizedPath("/", lang);
         <div class="footer-col">
           <h4>{col.heading}</h4>
           {col.links.map((l) => (
-            <a
-              href={localizeHref(l.href)}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noopener noreferrer" : undefined}
-            >
-              {l.label}
-            </a>
+            l.href === "https://bayjf.com" ? (
+              <BayjfLink size={16} label={l.label} />
+            ) : (
+              <a
+                href={localizeHref(l.href)}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noopener noreferrer" : undefined}
+              >
+                {l.label}
+              </a>
+            )
           ))}
         </div>
       ))
