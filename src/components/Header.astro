@@ -1,5 +1,6 @@
 ---
 import BayjfLink from '@bay/landing-ui/components/BayjfLink.astro';
+import StarOnGithub from '@bay/landing-ui/components/StarOnGithub.astro';
 import { SITE } from "../consts.ts";
 import {
   useTranslations,
@@ -40,6 +41,7 @@ const altLangHref = getAltLangPath(Astro.url.pathname, altLang);
     <nav class="nav" aria-label={t.headerNavAria}>
       {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       <BayjfLink size={18} />
+      <StarOnGithub href="https://github.com/bayernjf/splity" size={15} />
     </nav>
 
     <div class="header-actions">
@@ -82,6 +84,7 @@ const altLangHref = getAltLangPath(Astro.url.pathname, altLang);
     <div class="container mobile-nav-inner">
       {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       <BayjfLink size={18} />
+      <StarOnGithub href="https://github.com/bayernjf/splity" size={15} />
       <a href={SITE.appUrl} class="btn btn-primary">{t.navCta}</a>
     </div>
   </nav>
@@ -206,6 +209,18 @@ const altLangHref = getAltLangPath(Astro.url.pathname, altLang);
 
   .mobile-nav .btn {
     margin-top: 8px;
+  }
+
+  /* The mobile panel is a stretch-aligned flex column, which would blow the
+     pill's tinted background out to the full row width. */
+  .mobile-nav :global(.lui-star) {
+    align-self: flex-start;
+    margin: 6px 4px;
+  }
+
+  .nav :global(.lui-star),
+  .mobile-nav :global(.lui-star) {
+    color: var(--text-secondary);
   }
 
   @media (max-width: 720px) {

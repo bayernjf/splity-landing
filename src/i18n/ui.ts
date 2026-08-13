@@ -304,8 +304,8 @@ const en: Translation = {
       links: [
         { label: "Blog", href: "/blog" },
         { label: "About", href: "/about" },
-        { label: "GitHub", href: "REPO_URL", external: true },
         { label: "BayJF", href: "https://bayjf.com", external: true },
+        { label: "GitHub", href: "REPO_URL", external: true },
         { label: "llms.txt", href: "/llms.txt" },
       ],
     },
@@ -607,8 +607,8 @@ const zh: Translation = {
       links: [
         { label: "博客", href: "/blog" },
         { label: "关于", href: "/about" },
-        { label: "GitHub", href: "REPO_URL", external: true },
         { label: "BayJF", href: "https://bayjf.com", external: true },
+        { label: "GitHub", href: "REPO_URL", external: true },
         { label: "llms.txt", href: "/llms.txt" },
       ],
     },
