@@ -4,7 +4,8 @@ export const SITE = {
   url: "https://splity-landing.pages.dev",
   author: "Splity",
   twitter: "@splity",
-  appUrl: "https://splity.pages.dev",
+  // 产品尚未部署独立站点，CTA 指向本站演示区（splity.pages.dev 属于无关第三方，不可使用）
+  appUrl: "/#demo",
   repoUrl: "https://github.com/bayernjf/splity",
 };
 

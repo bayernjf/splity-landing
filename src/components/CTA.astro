@@ -1,12 +1,13 @@
 ---
 import { SITE } from "../consts.ts";
-import { useTranslations, type Lang } from "../i18n/utils.ts";
+import { useTranslations, getLocalizedPath, type Lang } from "../i18n/utils.ts";
 
 interface Props {
   lang?: Lang;
 }
 const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
+const appHref = getLocalizedPath(SITE.appUrl, lang);
 ---
 
 <section class="section cta-section">
@@ -14,7 +15,7 @@ const t = useTranslations(lang);
     <div class="cta-box">
       <h2>{t.ctaTitle}</h2>
       <p>{t.ctaSubtitle}</p>
-      <a href={SITE.appUrl} class="btn btn-primary btn-lg">{t.ctaButton}</a>
+      <a href={appHref} class="btn btn-primary btn-lg">{t.ctaButton}</a>
     </div>
   </div>
 </section>

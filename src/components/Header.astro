@@ -16,6 +16,7 @@ interface Props {
 }
 const { lang = "en" } = Astro.props;
 const t = useTranslations(lang);
+const appHref = getLocalizedPath(SITE.appUrl, lang);
 
 // 本地化导航链接：en -> /#features，zh -> /zh/#features
 const navItems = [
@@ -53,7 +54,7 @@ const altLangHref = getAltLangPath(Astro.url.pathname, altLang);
       >
         {languages[altLang]}
       </a>
-      <a href={SITE.appUrl} class="btn btn-primary btn-sm header-cta">{t.navCta}</a>
+      <a href={appHref} class="btn btn-primary btn-sm header-cta">{t.navCta}</a>
       <button
         id="menu-toggle"
         class="menu-toggle"
@@ -85,7 +86,7 @@ const altLangHref = getAltLangPath(Astro.url.pathname, altLang);
       {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       <BayjfLink size={18} />
       <StarOnGithub href="https://github.com/bayernjf/splity" size={15} />
-      <a href={SITE.appUrl} class="btn btn-primary">{t.navCta}</a>
+      <a href={appHref} class="btn btn-primary">{t.navCta}</a>
     </div>
   </nav>
 </header>

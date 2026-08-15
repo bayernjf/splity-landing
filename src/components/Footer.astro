@@ -24,12 +24,11 @@ const footerCols = t.footerCols.map((col) => ({
   })),
 }));
 
-// 本地化页脚链接（除了外部链接 APP_URL / REPO_URL / bayjf.com / llms.txt）
+// 本地化页脚链接（除了外部链接 REPO_URL / bayjf.com / llms.txt）
 const localizeHref = (href: string) => {
   if (
     href.startsWith("http") ||
     href === "/llms.txt" ||
-    href === SITE.appUrl ||
     href === SITE.repoUrl
   ) {
     return href;

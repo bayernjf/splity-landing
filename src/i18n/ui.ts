@@ -294,7 +294,7 @@ const en: Translation = {
     {
       heading: "Product",
       links: [
-        { label: "App", href: "APP_URL" },
+        { label: "Demo", href: "APP_URL" },
         { label: "Features", href: "/#features" },
         { label: "Demo", href: "/#demo" },
       ],
@@ -597,7 +597,7 @@ const zh: Translation = {
     {
       heading: "产品",
       links: [
-        { label: "应用", href: "APP_URL" },
+        { label: "演示", href: "APP_URL" },
         { label: "功能", href: "/#features" },
         { label: "使用演示", href: "/#demo" },
       ],
