@@ -90,7 +90,7 @@ public/
 ### 自定义域名
 
 在 Cloudflare Pages 项目设置 → Custom domains 中添加：
-- `splity-landing.pages.dev`（默认）
+- `splity.bayjf.com`（默认）
 - 自定义域名（如 `landing.splity.com`）→ 添加 CNAME 记录
 
 配置后需更新 `astro.config.mjs` 中的 `SITE.url`，否则 canonical / sitemap / OG 链接会指向默认域名。
@@ -101,7 +101,7 @@ public/
 
 ```js
 export const SITE = {
-  url: "https://splity-landing.pages.dev",  // 站点正式 URL
+  url: "https://splity.bayjf.com",  // 站点正式 URL
   title: "...",
   description: "...",
   appUrl: "https://splity.pages.dev",       // Splity 应用地址

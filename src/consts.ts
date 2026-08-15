@@ -1,7 +1,7 @@
 // 站点全局配置：astro.config.mjs 与所有组件/端点统一从此导入
 // 避免从 astro.config.mjs 导入（Vite 端点解析受限）
 export const SITE = {
-  url: "https://splity-landing.pages.dev",
+  url: "https://splity.bayjf.com",
   author: "Splity",
   twitter: "@splity",
   // 产品尚未部署独立站点，CTA 指向本站演示区（splity.pages.dev 属于无关第三方，不可使用）

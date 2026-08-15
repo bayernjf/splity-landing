@@ -29,8 +29,8 @@ Splity is built with React 19 + TypeScript + Vite and runs entirely on the clien
 
 - [Splity App](https://splity.pages.dev)
 - [GitHub Repository](https://github.com/bayernjf/splity-landing)
-- [Blog (English)](https://splity-landing.pages.dev/blog)
-- [Blog (Chinese)](https://splity-landing.pages.dev/zh/blog)
-- [About](https://splity-landing.pages.dev/about)
-- [Privacy Policy](https://splity-landing.pages.dev/privacy)
-- [Terms of Service](https://splity-landing.pages.dev/terms)
+- [Blog (English)](https://splity.bayjf.com/blog)
+- [Blog (Chinese)](https://splity.bayjf.com/zh/blog)
+- [About](https://splity.bayjf.com/about)
+- [Privacy Policy](https://splity.bayjf.com/privacy)
+- [Terms of Service](https://splity.bayjf.com/terms)
