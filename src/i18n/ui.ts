@@ -294,7 +294,7 @@ const en: Translation = {
     {
       heading: "Product",
       links: [
-        { label: "App", href: "APP_URL" },
+        { label: "Demo", href: "APP_URL" },
         { label: "Features", href: "/#features" },
         { label: "Demo", href: "/#demo" },
       ],
@@ -378,7 +378,7 @@ const en: Translation = {
     },
     {
       h: "Landing page analytics",
-      p: "This landing page (splity-landing.pages.dev) uses Cloudflare Web Analytics to collect aggregate visit statistics (page views, traffic sources, country/region). This service uses no cookies, no cross-site tracking, and no personal identification.",
+      p: "This landing page (splity.bayjf.com) uses Cloudflare Web Analytics to collect aggregate visit statistics (page views, traffic sources, country/region). This service uses no cookies, no cross-site tracking, and no personal identification.",
     },
     {
       h: "Third-party services",
@@ -404,7 +404,7 @@ const en: Translation = {
   termsSections: [
     {
       h: "Service description",
-      p: "Splity (\"the Service\") is a browser-based knowledge splitter and flashcard review tool, consisting of the app (splity.pages.dev) and this landing page (splity-landing.pages.dev).",
+      p: "Splity (\"the Service\") is a browser-based knowledge splitter and flashcard review tool, consisting of the app (splity.pages.dev) and this landing page (splity.bayjf.com).",
     },
     {
       h: "License to use",
@@ -597,7 +597,7 @@ const zh: Translation = {
     {
       heading: "产品",
       links: [
-        { label: "应用", href: "APP_URL" },
+        { label: "演示", href: "APP_URL" },
         { label: "功能", href: "/#features" },
         { label: "使用演示", href: "/#demo" },
       ],
@@ -679,7 +679,7 @@ const zh: Translation = {
     },
     {
       h: "落地页分析",
-      p: "本落地页（splity-landing.pages.dev）使用 Cloudflare Web Analytics 收集聚合访问统计（页面浏览量、访问来源、国家/地区）。该服务不使用 cookie，不跨站跟踪，不识别个人身份。",
+      p: "本落地页（splity.bayjf.com）使用 Cloudflare Web Analytics 收集聚合访问统计（页面浏览量、访问来源、国家/地区）。该服务不使用 cookie，不跨站跟踪，不识别个人身份。",
     },
     {
       h: "第三方服务",
@@ -705,7 +705,7 @@ const zh: Translation = {
   termsSections: [
     {
       h: "服务描述",
-      p: "Splity（以下简称\"本服务\"）是一款基于浏览器的知识点分割与卡片复习工具，包含应用（splity.pages.dev）与落地页（splity-landing.pages.dev）两部分。",
+      p: "Splity（以下简称\"本服务\"）是一款基于浏览器的知识点分割与卡片复习工具，包含应用（splity.pages.dev）与落地页（splity.bayjf.com）两部分。",
     },
     {
       h: "使用许可",
