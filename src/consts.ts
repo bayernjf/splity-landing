@@ -5,7 +5,7 @@ export const SITE = {
   author: "Splity",
   twitter: "@splity",
   appUrl: "https://splity.pages.dev",
-  repoUrl: "https://github.com/bayernjf/splity-landing",
+  repoUrl: "https://github.com/bayernjf/splity",
 };
 
 export const SITE_EN = {
