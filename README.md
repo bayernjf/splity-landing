@@ -2,7 +2,7 @@
 
 > Splity 落地页 —— 把零散知识点自动分割成学习卡片。
 
-基于 Astro 5 静态生成，针对 SEO 与 GEO（AI 大模型优化）深度优化，部署到 Cloudflare Pages。
+基于 Astro 7 静态生成，针对 SEO 与 GEO（AI 大模型优化）深度优化，部署到 Cloudflare Pages。
 
 ## 快速开始
 
@@ -16,7 +16,7 @@ npm run check    # TypeScript 类型检查
 
 ## 技术栈
 
-- **框架**：Astro 5（静态输出）
+- **框架**：Astro 7（静态输出）
 - **内容**：Content Collections + MDX（博客）
 - **SEO**：astro-sitemap、JSON-LD 结构化数据
 - **订阅**：@astrojs/rss（RSS feed）
